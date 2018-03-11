@@ -1,5 +1,5 @@
 {
-  "name": "links/cache",
+  "name": "linkphp/cache",
   "type": "library",
   "description": "php cache",
   "keywords": ["cache","php cache"],
@@ -14,7 +14,7 @@
   },
   "autoload": {
     "psr-4": {
-      "links\\cache\\": "src"
+      "linkphp\\cache\\": "src"
     }
   }
 }
