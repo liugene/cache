@@ -12,9 +12,9 @@
  * --------------------------------------------------*
  */
 
-namespace links\cache;
+namespace linkphp\cache;
 
-use links\cache\storage\File;
+use linkphp\cache\storage\File;
 
 class Cache
 {

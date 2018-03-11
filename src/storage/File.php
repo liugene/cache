@@ -1,8 +1,8 @@
 <?php
 
-namespace links\cache\storage;
+namespace linkphp\cache\storage;
 
-use links\cache\Storage;
+use linkphp\cache\Storage;
 
 class File extends Storage
 {

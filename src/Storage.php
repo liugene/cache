@@ -1,6 +1,6 @@
 <?php
 
-namespace links\cache;
+namespace linkphp\cache;
 
 abstract class Storage
 {
