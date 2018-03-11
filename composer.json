@@ -1,0 +1,20 @@
+{
+  "name": "links/cache",
+  "type": "library",
+  "description": "php cache",
+  "keywords": ["cache","php cache"],
+  "authors": [
+    {
+      "name": "liugene",
+      "email": "liujun2199@vip.qq.com"
+    }
+  ],
+  "require": {
+    "php": "^5.5 || ^7.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "links\\cache\\": "src"
+    }
+  }
+}
