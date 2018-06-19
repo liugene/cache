@@ -2,35 +2,37 @@
 
 namespace linkphp\cache;
 
-use linkphp\cache\storage\File;
+use Config;
 
 class Cache
 {
 
     private $storage;
 
+    private $config;
+
+    public function __construct()
+    {
+        if(empty($this->config)){
+            $this->config = Config::get('cache.');
+        }
+    }
+
+    /**
+     * @var Storage
+     */
     public function storage()
     {
-        if(is_null($this->storage)) $this->storage = new File();
+        if(!$this->storage){
+            $type = !empty($options['type']) ? $options['type'] : 'File';
+
+            $class = false === strpos($type, '\\') ?
+                '\\linkphp\\cache\\storage\\' . ucwords($type) :
+                $type;
+            $this->storage = new $class($this->config);
+            return $this->storage;
+        }
         return $this->storage;
-    }
-
-    public function setCacheTime($time)
-    {
-        $this->storage()->setCacheTime($time);
-        return $this;
-    }
-
-    public function setCachePath($path)
-    {
-        $this->storage()->setCachePath($path);
-        return $this;
-    }
-
-    public function setExt($ext)
-    {
-        $this->storage()->setExt($ext);
-        return $this;
     }
 
     public function get($key)
@@ -38,11 +40,14 @@ class Cache
         return $this->storage()->get($key);
     }
 
-    public function put($key,$data)
+    public function put($key,$data, $expire = '')
     {
-        return $this->storage()->put($key,$data);
+        return $this->storage()->put($key,$data , $expire);
     }
 
-    public function delete(){}
+    public function delete($key)
+    {
+        return $this->storage()->delete($key);
+    }
 
 }

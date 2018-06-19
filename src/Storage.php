@@ -5,37 +5,24 @@ namespace linkphp\cache;
 abstract class Storage
 {
 
-    private $cache_time = 3600;
+    protected $config = [];
 
-    private $cache_path = RUNTIME_PATH . 'temp/temp_cache/';
+    public function __construct($config)
+    {
+        $this->config = $config;
+    }
 
-    private $ext = '.php';
-
-    abstract public function put($key,$data);
+    abstract public function put($key, $data, $expire);
 
     abstract public function get($key);
 
-    public function setCacheTime($time)
-    {
-        $this->cache_time = $time;
-        return $this;
-    }
+    abstract public function delete($key);
 
-    public function setCachePath($path)
-    {
-        $this->cache_path = $path;
-        return $this;
-    }
-
-    public function setExt($ext)
-    {
-        $this->ext = $ext;
-        return $this;
-    }
+    abstract public function has($key);
 
     public function filename($key)
     {
-        return $this->cache_path . md5($key) . $this->ext;
+        return $this->config['path'] . md5($key) . $this->config['ext'];
     }
 
 }
